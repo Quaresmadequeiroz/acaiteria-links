@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paçaí Sabor Paraense</title>
+  <meta name="description" content="Paçaí Sabor Paraense — sabor paraense em um visual moderno e profissional." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f0ff;
+      --bg-strong: #efe2ff;
+      --purple: #4a235d;
+      --purple-dark: #2a1437;
+      --purple-soft: #704b8c;
+      --yellow: #f7c75d;
+      --yellow-strong: #efb739;
+      --green: #7fd85a;
+      --green-dark: #4ca22b;
+      --white: #ffffff;
+      --text: #2d1b34;
+      --muted: #6d5879;
+      --line: rgba(74, 35, 93, 0.12);
+      --shadow: 0 18px 55px rgba(45, 27, 52, 0.14);
+      --soft-shadow: 0 12px 28px rgba(74, 35, 93, 0.12);
+      --radius: 26px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Nunito", sans-serif;
+      color: var(--text);
+      background: radial-gradient(circle at top left, rgba(132, 86, 177, 0.18), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(119, 78, 158, 0.14), transparent 32%),
+        linear-gradient(180deg, #fdf7ff 0%, #f6edf9 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 16px;
+    }
+
+    .app {
+      width: min(100%, 440px);
+      position: relative;
+      z-index: 1;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      border-radius: 32px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(122, 78, 159, 0.06), transparent 40%, rgba(247, 199, 93, 0.05));
+      pointer-events: none;
+    }
+
+    .top-badge {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      z-index: 2;
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(74, 35, 93, 0.08);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--purple);
+      box-shadow: var(--soft-shadow);
+    }
+
+    .hero {
+      position: relative;
+      height: 240px;
+      background: linear-gradient(180deg, rgba(43, 20, 54, 0.18), rgba(43, 20, 54, 0.48)),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600'%3E%3Crect fill='%234a235d' width='1200' height='600'/%3E%3Ccircle cx='300' cy='300' r='200' fill='%238fd34a' opacity='0.3'/%3E%3Ccircle cx='900' cy='300' r='150' fill='%23f7c75d' opacity='0.2'/%3E%3C/svg%3E");
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding: 20px;
+    }
+
+    .hero-content {
+      z-index: 1;
+      color: var(--white);
+    }
+
+    .hero-tagline {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--yellow);
+    }
+
+    .hero-location {
+      font-size: 11px;
+      font-weight: 700;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(247, 199, 93, 0.3);
+      color: var(--yellow);
+      padding: 6px 12px;
+      border-radius: 20px;
+      display: inline-block;
+      margin-top: 8px;
+      white-space: nowrap;
+    }
+
+    .header {
+      text-align: center;
+      padding: 28px 24px 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .logo {
+      width: 88px;
+      height: 88px;
+      margin: 0 auto 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--yellow), var(--yellow-strong));
+      border-radius: 50%;
+      font-size: 48px;
+      font-weight: bold;
+      color: var(--purple);
+      box-shadow: 0 8px 24px rgba(247, 199, 93, 0.3);
+    }
+
+    .brand-name {
+      font-family: "Fredoka", cursive;
+      font-size: 42px;
+      font-weight: 700;
+      color: var(--purple);
+      letter-spacing: -0.5px;
+      line-height: 1;
+      margin: 0;
+    }
+
+    .brand-subtitle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 8px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--purple-soft);
+    }
+
+    .divider-line {
+      width: 20px;
+      height: 1px;
+      background: rgba(112, 75, 140, 0.25);
+    }
+
+    .chips {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 20px 16px;
+      padding: 0 20px;
+    }
+
+    .chip {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      background: rgba(112, 75, 140, 0.08);
+      border: 1px solid rgba(112, 75, 140, 0.15);
+      color: var(--purple-soft);
+      padding: 6px 14px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    .content {
+      padding: 0 20px;
+    }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 24px 0 16px;
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(112, 75, 140, 0.4);
+    }
+
+    .section-label::before,
+    .section-label::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: rgba(112, 75, 140, 0.12);
+    }
+
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .link-btn {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 18px;
+      border-radius: 18px;
+      text-decoration: none;
+      font-family: "Nunito", sans-serif;
+      font-weight: 800;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1),
+        box-shadow 0.22s ease, filter 0.22s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .link-btn:hover {
+      transform: translateY(-3px) scale(1.01);
+    }
+
+    .link-btn:active {
+      transform: scale(0.97);
+      transition-duration: 0.1s;
+    }
+
+    .link-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+      background: rgba(0, 0, 0, 0.1);
+    }
+
+    .link-text {
+      flex: 1;
+    }
+
+    .link-label {
+      display: block;
+      font-size: 9px;
+      font-weight: 700;
+      opacity: 0.7;
+      margin-bottom: 2px;
+      letter-spacing: 0.2px;
+    }
+
+    .link-title {
+      display: block;
+      font-size: 16px;
+      font-weight: 900;
+      letter-spacing: -0.2px;
+    }
+
+    .link-arrow {
+      font-size: 18px;
+      opacity: 0.4;
+      font-weight: 300;
+      flex-shrink: 0;
+    }
+
+    .btn-ifood {
+      background: linear-gradient(135deg, #ff3b44 0%, #c80e1a 100%);
+      color: #fff;
+      box-shadow: 0 8px 28px rgba(200, 14, 26, 0.42);
+    }
+
+    .btn-99food {
+      background: linear-gradient(135deg, #ffd700 0%, #f0b800 100%);
+      color: #2a1600;
+      box-shadow: 0 8px 28px rgba(240, 184, 0, 0.38);
+    }
+
+    .btn-whatsapp {
+      background: linear-gradient(135deg, #25d366 0%, #128c3e 100%);
+      color: #fff;
+      box-shadow: 0 8px 28px rgba(18, 140, 62, 0.38);
+    }
+
+    .btn-menu {
+      background: rgba(112, 75, 140, 0.06);
+      border: 2px dashed rgba(112, 75, 140, 0.18);
+      color: rgba(112, 75, 140, 0.4);
+      box-shadow: none;
+      cursor: default;
+    }
+
+    .btn-menu:hover,
+    .btn-menu:active {
+      transform: none;
+    }
+
+    .btn-new-badge {
+      font-size: 8px;
+      font-weight: 900;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      background: rgba(247, 199, 93, 0.15);
+      border: 1px solid rgba(247, 199, 93, 0.3);
+      color: var(--yellow);
+      padding: 4px 10px;
+      border-radius: 20px;
+      flex-shrink: 0;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 20px;
+      border-top: 1px solid var(--line);
+      margin-top: 16px;
+    }
+
+    .footer-text {
+      font-size: 11px;
+      font-weight: 700;
+      color: rgba(112, 75, 140, 0.35);
+      letter-spacing: 0.3px;
+      margin: 0;
+    }
+
+    .footer-address {
+      font-size: 10px;
+      font-weight: 600;
+      color: rgba(112, 75, 140, 0.2);
+      margin-top: 6px;
+    }
+
+    @media (max-width: 480px) {
+      .brand-name {
+        font-size: 36px;
+      }
+
+      .link-btn {
+        padding: 12px 14px;
+      }
+
+      .link-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+      }
+
+      .link-title {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <div class="card">
+      <!-- Hero Section -->
+      <div class="hero">
+        <div class="hero-content">
+          <div class="hero-tagline">Sabor Original</div>
+          <div class="hero-location">📍 Belém, PA</div>
+        </div>
+      </div>
+
+      <!-- Header -->
+      <div class="header">
+        <div class="logo">🥤</div>
+        <h1 class="brand-name">Paçaí</h1>
+        <div class="brand-subtitle">
+          <div class="divider-line"></div>
+          <span>Sabor Paraense</span>
+          <div class="divider-line"></div>
+        </div>
+      </div>
+
+      <!-- Tags -->
+      <div class="chips">
+        <span class="chip">100% Natural</span>
+        <span class="chip">Açaí Premium</span>
+        <span class="chip">Entrega Rápida</span>
+      </div>
+
+      <!-- Content -->
+      <div class="content">
+        <!-- Links Section -->
+        <div class="section-label">Peça Agora</div>
+
+        <div class="links">
+          <!-- iFood -->
+          <a href="https://www.ifood.com.br" target="_blank" rel="noopener noreferrer" class="link-btn btn-ifood">
+            <div class="link-icon">🍽️</div>
+            <div class="link-text">
+              <span class="link-label">Delivery</span>
+              <span class="link-title">iFood</span>
+            </div>
+            <span class="link-arrow">→</span>
+          </a>
+
+          <!-- 99Food -->
+          <a href="https://www.99food.com" target="_blank" rel="noopener noreferrer" class="link-btn btn-99food">
+            <div class="link-icon">🚲</div>
+            <div class="link-text">
+              <span class="link-label">Delivery</span>
+              <span class="link-title">99Food</span>
+            </div>
+            <span class="link-arrow">→</span>
+          </a>
+
+          <!-- WhatsApp -->
+          <a href="https://wa.me/5591987654321" target="_blank" rel="noopener noreferrer" class="link-btn btn-whatsapp">
+            <div class="link-icon">💬</div>
+            <div class="link-text">
+              <span class="link-label">Contato Direto</span>
+              <span class="link-title">WhatsApp</span>
+            </div>
+            <span class="link-arrow">→</span>
+          </a>
+
+          <!-- Menu -->
+          <button class="link-btn btn-menu">
+            <div class="link-icon">📋</div>
+            <div class="link-text">
+              <span class="link-label">Confira</span>
+              <span class="link-title">Cardápio Completo</span>
+            </div>
+            <span class="btn-new-badge">em breve</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="footer">
+        <p class="footer-text">✨ Paçaí Sabor Paraense ✨</p>
+        <p class="footer-address">Belém, Pará — Entrega em toda a região</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
